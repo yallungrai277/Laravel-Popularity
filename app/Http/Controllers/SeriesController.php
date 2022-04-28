@@ -9,7 +9,10 @@ class SeriesController extends Controller
 {
     public function index()
     {
-        return view('series.index');
+        return view('series.index', [
+            // 'popular' => Series::withTotalVisitCount()->get()
+            'popular' => Series::withTotalVisitCount()->popularLastDays(2)->get()
+        ]);
     }
 
     public function show(Series $series)
